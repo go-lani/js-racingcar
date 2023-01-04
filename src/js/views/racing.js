@@ -3,8 +3,8 @@ import { $, $$ } from "../utils/selector.js";
 import {
   ACTION_TYPE,
   CONGRATULATORY_MESSAGE,
-  RENDER_CAR_DELAY_MILLISECONDS,
-  SHOW_WINNER_ALERT_DELAY_MILLISECONDS,
+  RENDER_CAR_RENDER_CAR_DELAY_MILLISECONDS,
+  SHOW_WINNER_ALERT_RENDER_CAR_DELAY_MILLISECONDS,
 } from "../utils/constants.js";
 import {
   $FORWARD_ICON_ELEMENT,
@@ -96,7 +96,7 @@ class RacingView extends Observer {
           this.hideSpinner();
           resolve();
         }
-      }, RENDER_CAR_DELAY_MILLISECONDS);
+      }, RENDER_CAR_RENDER_CAR_DELAY_MILLISECONDS);
     });
   }
 
@@ -117,7 +117,7 @@ class RacingView extends Observer {
 
     setTimeout(() => {
       alert(CONGRATULATORY_MESSAGE);
-    }, SHOW_WINNER_ALERT_DELAY_MILLISECONDS);
+    }, SHOW_WINNER_ALERT_RENDER_CAR_DELAY_MILLISECONDS);
   }
 
   showSpinner() {

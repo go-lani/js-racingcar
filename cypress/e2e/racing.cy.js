@@ -9,10 +9,12 @@ import {
   $WINNER_INFO_SELECTOR,
   ATTEMPT_COUNT,
   CONGRATULATORY_MESSAGE,
-  DELAY_MILLISECONDS,
   ERROR_MESSAGES,
+  MAX_CAR_NAME_LENGTH,
   WRITING_CAR_NAME,
   WRITING_CAR_NAMES,
+  RENDER_CAR_DELAY_MILLISECONDS,
+  SHOW_WINNER_ALERT_RENDER_CAR_DELAY_MILLISECONDS,
 } from "../support/constant.js";
 
 describe("레이싱 경주 테스트", () => {
@@ -33,7 +35,7 @@ describe("레이싱 경주 테스트", () => {
       });
     });
 
-    it("이름은 5자 이하만 가능하다.", () => {
+    it(`이름은 ${MAX_CAR_NAME_LENGTH}자 이하만 가능하다.`, () => {
       cy.get($CAR_NAME_INPUT_SELECTOR).type("일이삼사오육");
       cy.alert({
         action: () => cy.get($SUBMIT_CAR_NAME_BUTTON_SELECTOR).click(),
@@ -155,7 +157,7 @@ describe("레이싱 경주 테스트", () => {
         attemptCount: ATTEMPT_COUNT,
       });
 
-      cy.tick(ATTEMPT_COUNT * DELAY_MILLISECONDS);
+      cy.tick(ATTEMPT_COUNT * RENDER_CAR_DELAY_MILLISECONDS);
 
       cy.get($CAR_SELECTOR).each(($el) => {
         const forwardLength = $el.children(".forward-icon").length;
@@ -171,7 +173,7 @@ describe("레이싱 경주 테스트", () => {
         carNames: WRITING_CAR_NAMES,
         attemptCount: ATTEMPT_COUNT,
       });
-      cy.tick(ATTEMPT_COUNT * DELAY_MILLISECONDS);
+      cy.tick(ATTEMPT_COUNT * RENDER_CAR_DELAY_MILLISECONDS);
       cy.get($WINNER_INFO_SELECTOR).should("be.visible");
     });
 
@@ -183,8 +185,11 @@ describe("레이싱 경주 테스트", () => {
             carNames: WRITING_CAR_NAMES,
             attemptCount: ATTEMPT_COUNT,
           });
-          cy.tick(ATTEMPT_COUNT * DELAY_MILLISECONDS + DELAY_MILLISECONDS);
-          return cy.tick(2000);
+          cy.tick(
+            ATTEMPT_COUNT * RENDER_CAR_DELAY_MILLISECONDS +
+              RENDER_CAR_DELAY_MILLISECONDS
+          );
+          return cy.tick(SHOW_WINNER_ALERT_RENDER_CAR_DELAY_MILLISECONDS);
         },
         message: CONGRATULATORY_MESSAGE,
       });
@@ -198,7 +203,7 @@ describe("레이싱 경주 테스트", () => {
         carNames: WRITING_CAR_NAMES,
         attemptCount: ATTEMPT_COUNT,
       });
-      cy.tick(ATTEMPT_COUNT * DELAY_MILLISECONDS);
+      cy.tick(ATTEMPT_COUNT * RENDER_CAR_DELAY_MILLISECONDS);
     });
     it("다시 시작하기 버튼이 존재한다.", () => {
       cy.get($RESTART_BUTTON_SELECTOR).should("be.visible");
