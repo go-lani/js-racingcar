@@ -18,7 +18,7 @@
 </p>
 
 <p align="middle">
-  <a href="https://publizm.github.io/js-racingcar/">🖥️ 데모 링크</a>
+  <a href="https://go-lani.github.io/js-racingcar/">🖥️ 데모 링크</a>
 </p>
 
 <br>
