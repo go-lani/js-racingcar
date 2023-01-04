@@ -18,3 +18,9 @@ export const MAX_NUMBER = 9;
 export const MINIMUM_CONDITIONS_FOR_MOVEMENT = 4;
 export const SHOW_WINNER_ALERT_RENDER_CAR_DELAY_MILLISECONDS = 2000;
 export const RENDER_CAR_RENDER_CAR_DELAY_MILLISECONDS = 1000;
+
+export const CAR_MODEL_INITIAL_STATE = {
+  cars: [],
+  winner: [],
+  attemptCount: 0,
+};

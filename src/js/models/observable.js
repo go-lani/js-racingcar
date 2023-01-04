@@ -1,15 +1,10 @@
 import { NotAllowedError } from "../utils/error.js";
-
-export const INITIAL_STATE = {
-  cars: [],
-  winner: [],
-  attemptCount: 0,
-};
+import { CAR_MODEL_INITIAL_STATE } from "../utils/constants.js";
 
 class Observable {
   #state;
-  constructor() {
-    this.#state = INITIAL_STATE;
+  constructor(initialState) {
+    this.#state = initialState;
     this.observers = [];
   }
 
@@ -39,7 +34,7 @@ class Observable {
   }
 
   reset() {
-    this.#state = JSON.parse(JSON.stringify(INITIAL_STATE));
+    this.#state = JSON.parse(JSON.stringify(CAR_MODEL_INITIAL_STATE));
   }
 }
 
